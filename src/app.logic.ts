@@ -1,28 +1,29 @@
-import {yarg} from './config/plugins/args.plugin'
+import { yarg } from './config/plugins/args.plugin'
 import fs from 'fs';
 
-console.log(yarg);
+const { b: base, b: limit, s: showTable } = yarg;
 
 let outputMessage = '';
-const base = 5;
-const headerMessage=`
+const headerMessage = `
 ===================================================
-                  Tabla del ${ base }
+                  Tabla del ${base}
 ===================================================\n
 `;
 
-for( let i = 1 ; i<=10 ; i++){
-    outputMessage+= `${ base } x ${ i } = ${ base*i}\n`;    
+for (let i = 1; i <= limit; i++) {
+    outputMessage += `${base} x ${i} = ${base * i}\n`;
 }
-
-console.log(headerMessage + outputMessage)
 
 outputMessage = headerMessage + outputMessage;
 
+if (showTable) {
+    console.log(outputMessage)
+}
+
 const outputPath = `outputs/folder1/folder2/folder3`;
 
-fs.mkdirSync( outputPath, {recursive: true});
+fs.mkdirSync(outputPath, { recursive: true });
 
 
-fs.writeFileSync(`${outputPath}/tabla-${ base }.txt`, outputMessage);
+fs.writeFileSync(`${outputPath}/tabla-${base}.txt`, outputMessage);
 console.log('File Created!');
