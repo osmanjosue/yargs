@@ -8,7 +8,7 @@ export interface CreateTableOptions {
 }
 
 
-export class CreateTable {
+export class CreateTable implements CreateTableUseCase{
     constructor(
 
     ) {}
